@@ -1,16 +1,88 @@
-<div name="login-in-form" ng-controller="loginController">
-  <div id="loginbox">
-    <div class="form-group">
-      <label for="j_username">Email address</label>
-      <input type="email" class="form-control" id="j_username"
-      ng-maxlength="50" ng-required="true" ng-pattern="/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/"
-      placeholder="Enter your email id here"
-      ng-model="j_username"
-      name="j_username"
-      id="j_username">
-      <span class='text-danger' ng-show="signInForm.$submitted || signInForm.j_username.$dirty && signInForm.j_username.$invalid">
-        <span ng-show="signInForm.j_username.$error.required">Email should not be empty.</span>
-      <span ng-show="signInForm.j_username.$error.maxlength">Email should be less than 50 character.</span>
-      <span ng-show="signInForm.j_username.$error.pattern">Invalid email.</span>
-  </div>
+<div class=main-content>
+    <!--contact central logo-->
+    <div class="container">
+    <div class="navbar-header">
+        <span class="navbar-brand" href="/">
+        <img src="images/contactcentral.svg" alt="Logo">
+        <span class="text-terinary">CONTACT</span><span>CENTRAL</span><sup class="text-terinary">BETA</sup>
+        </span>
+    </div>
+    </div>
+    <!--contact cental logo end-->
+    <form role="form" action="j_spring_security_check" method="post"
+  name="signInForm"
+  ng-controller="loginController">
+    <!-- <h3>Sign In</h3> -->
+    <div class="row">
+      <div class="col-md-11">
+        <div ng-switch="status">
+            <br>
+            <div class="alert alert-danger" ng-switch-when="failed">
+                <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <p> User Name or Password is invalid.</p>
+            </div>
+            <div class="alert alert-success" ng-switch-when="reset">
+                <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <p>
+                    <strong>Password Reset </strong> Login with your latest password.
+                </p>
+            </div>
+        </div>
+        <div id="loginbox">
+            <div class="form-group">
+                <label for="j_username">Email address</label>
+                <input type="email" class="form-control" id="j_username"
+                  ng-maxlength="50" ng-required="true" ng-pattern="/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/"
+                  placeholder="Enter your email id here"
+                  ng-model="j_username"
+                  name="j_username"
+                  id="j_username">
+                  <span class='text-danger' ng-show="signInForm.$submitted || signInForm.j_username.$dirty && signInForm.j_username.$invalid">
+                        <span ng-show="signInForm.j_username.$error.required">Email should not be empty.</span>
+                  <span ng-show="signInForm.j_username.$error.maxlength">Email should be less than 50 character.</span>
+                  <span ng-show="signInForm.j_username.$error.pattern">Invalid email.</span>
+            </div>
+            <div class="form-group">
+                <label for="j_password">Password</label>
+                <input type="password"
+                  class="form-control"
+                  id="j_password"
+                  placeholder="Enter your password here"
+                  ng-maxlength="15" ng-required="true"
+                  ng-model="j_password"
+                  name="j_password" id="j_password">
+                  <span class='text-danger' ng-show="signInForm.$submitted || signInForm.j_password.$dirty && signInForm.j_password.$invalid">
+                        <span ng-show="signInForm.j_password.$error.required">Password should not be empty.</span>
+                  <span ng-show="signInForm.j_password.$error.maxlength">Password should be less than 15 characters.</span>
+                  </span>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox" name="_spring_security_remember_me"
+                          id="_spring_security_remember_me"> Remember me
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center form-group">
+                <br>
+                <button type="submit" class="btn btn-secondary"
+                  ng-disabled="signInForm.$invalid"
+                  >SIGN IN</button>
+                <br><br>
+                <label>
+                        <a
+                          href="#/password?type=forgot"
+                          class="form-control-static"
+                          >Forgot password?</a>
+                </label>
+            </div>
+        </div>
+      </div>
+    </div>
+
+</form>
 </div>
