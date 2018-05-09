@@ -1,0 +1,16 @@
+<div name="login-in-form" ng-controller="loginController">
+  <div id="loginbox">
+    <div class="form-group">
+      <label for="j_username">Email address</label>
+      <input type="email" class="form-control" id="j_username"
+      ng-maxlength="50" ng-required="true" ng-pattern="/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/"
+      placeholder="Enter your email id here"
+      ng-model="j_username"
+      name="j_username"
+      id="j_username">
+      <span class='text-danger' ng-show="signInForm.$submitted || signInForm.j_username.$dirty && signInForm.j_username.$invalid">
+        <span ng-show="signInForm.j_username.$error.required">Email should not be empty.</span>
+      <span ng-show="signInForm.j_username.$error.maxlength">Email should be less than 50 character.</span>
+      <span ng-show="signInForm.j_username.$error.pattern">Invalid email.</span>
+  </div>
+</div>
