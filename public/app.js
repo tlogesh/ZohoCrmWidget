@@ -7,4 +7,8 @@ app
         templateUrl : "./templates/login.html"
     })
   })
-  .controller["loginController",loginController];
+  .controller('loginController',loginController);
+
+function loginController(){
+  console.log('this controller is loaded properly');
+}
